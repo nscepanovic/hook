@@ -1,4 +1,5 @@
-hook
+SVN pre-commit hook script
 ====
-
-SVN HOOK Scripts
+This pre-commit script replace
+console.log with comment // characters
+in all files.
