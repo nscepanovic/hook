@@ -1,6 +1,6 @@
 SVN pre-commit hook script
 ====
-This pre-commit script replace
-'console.log' with comment '//' characters
-in all files and prevent 'console error' in IE.
+This pre-commit script search for
+'console.log', return line number 
+and prevent 'console error' in IE.
 
