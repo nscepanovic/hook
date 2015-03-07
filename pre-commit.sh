@@ -1,14 +1,11 @@
 #!/bin/sh
-
+#
 # PRE-COMMIT HOOK
 # author: Nemanja Scepanovic
 # email: nscepanovic11@gmail.com
 #
-# This pre-commit script search 
-# for consol.log in files and 
-# return line number
-#
-#
+# This pre-commit script replace
+# console.log with comment // characters
 
 REPOS="$1"
 TXN="$2"
@@ -16,16 +13,13 @@ TXN="$2"
 SVNLOOK=/usr/bin/svnlook
 
 # Get all changed files in repository
-CHANGED=`$SVNLOOK changed -t "$TXN" "$REPOS" | grep "^[U|A]" | awk '{print $2}'`;
+CHANGED=`$SVNLOOK changed -t "$TXN" "$REPOS"`;
 
-# Iterate through all files
+# Iterate trough all files
 for file in $CHANGED;
 do
- if grep -q "console.log" $file; then
-    echo "Erorr: file '$file' contains 'console.log' on line: " >&2
-    grep -n console.log $file >&2
-    exit 1
- fi
+  # Replace console.log with //
+  sed -i 's/cosnole.log/\/\//g' $file
 done
 
 exit 0
